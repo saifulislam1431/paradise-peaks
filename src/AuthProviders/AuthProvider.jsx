@@ -21,6 +21,7 @@ const AuthProvider = ({ children }) => {
             unsubscribe();
         }
     },[])
+    
     const userInfo = {
         user
     }
