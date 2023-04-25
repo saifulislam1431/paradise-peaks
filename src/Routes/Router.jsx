@@ -7,6 +7,7 @@ import Home from '../Pages/Home/Home';
 import Login from '../Pages/Login/Login';
 import Register from '../Pages/Register/Register';
 import Rooms from '../Pages/Rooms/Rooms';
+import RoomDetails from '../Pages/RoomDetails/RoomDetails';
 
 const Router = createBrowserRouter([
     {
@@ -29,6 +30,11 @@ const Router = createBrowserRouter([
                 path: "/rooms",
                 element: <Rooms></Rooms>,
                 loader:()=> fetch("https://paradise-peaks-server.vercel.app/allRooms")
+            },
+            {
+                path: "/rooms/:id",
+                element: <RoomDetails></RoomDetails>,
+                loader: ({params})=> fetch(`https://paradise-peaks-server.vercel.app/allRooms/${params.id}`)
             }
         ]
     }

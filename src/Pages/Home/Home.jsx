@@ -16,9 +16,9 @@ const Home = () => {
             <section className='my-10 flex flex-col lg:flex-row justify-center items-center gap-10'>
                 <div>
                     <h1 className='text-2xl font-bold title'>Book an room, suite or apartment for you....! </h1>
-                    <button className='myBtn mt-5'>
-                        <Link to="/rooms">Get Started</Link>
-                    </button>
+
+                        <Link to="/rooms"  ><button className='myBtn mt-5'>Get Started</button></Link>
+
                 </div>
                 <div>
                     <Lottie animationData={animationImg} loop={true} />

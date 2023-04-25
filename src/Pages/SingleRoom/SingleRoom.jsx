@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const SingleRoom = ({ singleRoom }) => {
-    const {id,category,description,img,price,occupancy,beds} = singleRoom;
+    const {id,category,description,img} = singleRoom;
     return (
         <section>
 
