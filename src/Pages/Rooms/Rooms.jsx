@@ -6,7 +6,7 @@ const Rooms = () => {
     const allRooms = useLoaderData();
     const [isAllShow , setIsAllShow] = useState(false);
 
-    console.log(allRooms);
+    // console.log(allRooms);
     return (
         <main className='my-6 lg:my-20'>
             <section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-8'>

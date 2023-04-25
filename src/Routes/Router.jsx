@@ -9,6 +9,7 @@ import Register from '../Pages/Register/Register';
 import Rooms from '../Pages/Rooms/Rooms';
 import RoomDetails from '../Pages/RoomDetails/RoomDetails';
 import Error from '../Pages/Error/Error';
+import BookingConfirmation from '../Pages/BookingConfirmation/BookingConfirmation';
 
 const Router = createBrowserRouter([
     {
@@ -37,6 +38,10 @@ const Router = createBrowserRouter([
                 path: "/rooms/:id",
                 element: <RoomDetails></RoomDetails>,
                 loader: ({params})=> fetch(`https://paradise-peaks-server.vercel.app/allRooms/${params.id}`)
+            },
+            {
+                path:"/confirm",
+                element: <BookingConfirmation />
             }
         ]
     }

@@ -6,7 +6,7 @@ import {IoBed} from "react-icons/io5";
 
 const RoomDetails = () => {
     const details = useLoaderData();
-    console.log(details);
+    // console.log(details);
     const { id, category, description, img, price, occupancy, beds } = details;
     return (
         <main className='my-6 lg:my-14'>
@@ -26,7 +26,7 @@ const RoomDetails = () => {
                         </div>
                         <div className='flex gap-10 items-center'>
                         <span className='inline-flex items-center gap-2 border py-2 px-4 rounded-lg text-lg font-bold'><FaDollarSign className='h-6 w-5 text-gradient-ternary'/>{price}</span>
-                        <Link to ="/">
+                        <Link to ="/confirm">
                             <button className='myBtnSecond rounded-lg'>Book Room</button>
                         </Link>
                         </div>

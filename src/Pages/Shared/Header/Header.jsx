@@ -4,38 +4,38 @@ import { UserContext } from '../../../AuthProviders/AuthProvider';
 import { toast } from 'react-toastify';
 import { HiUserCircle } from "react-icons/hi2";
 const Header = () => {
-    const {user,logOut} = useContext(UserContext);
-    const [menuOpen , setMenuOpen] = useState(false);
-    const handleOut =()=>{
+    const { user, logOut } = useContext(UserContext);
+    const [menuOpen, setMenuOpen] = useState(false);
+    const handleOut = () => {
         logOut()
-        .then(() => {
+            .then(() => {
 
-            toast.success('Sign Out Successfully', {
-                position: "top-center",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
+                toast.success('Sign Out Successfully', {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
 
-            });
-            setMenuOpen(false)
+                });
+                setMenuOpen(false)
 
-        }).catch(error=>{
-            toast.error(error.message, {
-                position: "top-center",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
-        })
-    } 
+            }).catch(error => {
+                toast.error(error.message, {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            })
+    }
     return (
 
 
@@ -46,14 +46,14 @@ const Header = () => {
                 </Link>
                 <div className="flex items-center md:order-2">
                     <div>
-                    {
-                        user ? <button type="button" className="flex mr-3 text-sm rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" onClick={()=>setMenuOpen(!menuOpen)} >
-                        <span className="sr-only">Open user menu</span>
-                        <span  alt="user photo"><HiUserCircle className="w-14 h-14 rounded-full"/></span>
-                    </button> :  <Link to="/login" className='myBtnSecond mt-0'>
-                        <button>Login</button>
-                    </Link>
-                    }
+                        {
+                            user ? <button type="button" className="flex mr-3 text-sm rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" onClick={() => setMenuOpen(!menuOpen)} >
+                                <span className="sr-only">Open user menu</span>
+                                <span alt="user photo"><HiUserCircle className="w-14 h-14 rounded-full" /></span>
+                            </button> : <Link to="/login" className='myBtnSecond mt-0'>
+                                <button>Login</button>
+                            </Link>
+                        }
                     </div>
 
                     <div className={`z-50 ${menuOpen ? " absolute top-16 right-7" : "hidden"} my-4  text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600`}>
@@ -68,7 +68,7 @@ const Header = () => {
                             <li>
                                 <Link to="/" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</Link>
                             </li>
-                       
+
                             <li onClick={handleOut}>
                                 <Link to="/" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</Link>
                             </li>
