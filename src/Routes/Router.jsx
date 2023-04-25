@@ -8,11 +8,13 @@ import Login from '../Pages/Login/Login';
 import Register from '../Pages/Register/Register';
 import Rooms from '../Pages/Rooms/Rooms';
 import RoomDetails from '../Pages/RoomDetails/RoomDetails';
+import Error from '../Pages/Error/Error';
 
 const Router = createBrowserRouter([
     {
         path:"/",
         element: <Main></Main>,
+        errorElement: <Error></Error>,
         children:[
             {
                 path:"/",

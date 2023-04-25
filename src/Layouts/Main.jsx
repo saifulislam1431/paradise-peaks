@@ -9,9 +9,9 @@ const Main = () => {
     const loc = useLocation();
     useEffect(()=>{
         if(loc.pathname == "/"){
-            document.title("Paradise peaks")
+            document.title = "Paradise peaks"
         }else{
-            document.title=`Paradise peaks ${loc.pathname.replace("/", "| ")}`
+            document.title =`Paradise peaks ${loc.pathname.replace("/", "| ")}`
         }
     },[loc.pathname])
     return (
