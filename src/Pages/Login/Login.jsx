@@ -1,15 +1,16 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { FaEye, FaEyeSlash, FaGoogle, FaPhoneAlt } from "react-icons/fa";
+import { FaEye, FaEyeSlash, FaFacebook, FaGoogle, FaPhoneAlt } from "react-icons/fa";
 import { UserContext } from '../../AuthProviders/AuthProvider';
 import { toast } from 'react-toastify';
 
 const Login = () => {
     const [type, setType] = useState('password');
     const [show, setShow] = useState(false);
-    const { signInUser } = useContext(UserContext);
+    const { signInUser, resetPassword, facebookLogIn } = useContext(UserContext);
     const location = useLocation();
     const navigate = useNavigate();
+    const emailRef = useRef()
     const handleShow = () => {
         setType('text')
     }
@@ -38,7 +39,7 @@ const Login = () => {
                 });
                 navigate('/');
                 form.reset();
-            }).catch(error=>{
+            }).catch(error => {
                 toast.error(error.message, {
                     position: "top-center",
                     autoClose: 3000,
@@ -51,13 +52,70 @@ const Login = () => {
                 });
             })
     }
+    const resetPasswordEmail = () => {
+        const email = emailRef.current.value;
+        resetPassword(email)
+            .then(() => {
+                toast.success('Password reset email sent!', {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            })
+            .catch(error => {
+                toast.error(error.message, {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            })
+    }
+    const handleFacebookLogin =()=>{
+        facebookLogIn()
+        .then(res => {
+            const loggedUser = res.user;
+            toast.success('Login Successfully', {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            navigate('/');
+            form.reset();
+        }).catch(error => {
+            toast.error(error.message, {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+        })
+    }
     return (
         <div className='flex items-center justify-center my-16'>
             <div>
                 <h2 className='text-center my-8 font-bold text-gradient'>Login</h2>
                 <form className='flex flex-col' onSubmit={handleLogin}>
                     <label htmlFor="email" className='mb-2 font-medium text-gray-600'>Email:</label>
-                    <input type="email" id="email" name="email" className='border border-gray-300 rounded-md outline-none bg-gray-300 bg-opacity-20  focus:border-0' />
+                    <input type="email" id="email" name="email" ref={emailRef} className='border border-gray-300 rounded-md outline-none bg-gray-300 bg-opacity-20  focus:border-0' />
                     <label htmlFor="password" className='mt-4 mb-2 font-medium text-gray-600'>Password:</label>
                     <span className='flex items-center '>
                         <input type={type}
@@ -80,12 +138,14 @@ const Login = () => {
                             Sign in with Google
                         </span>
 
-                        <span className="text-white bg-[#050708] hover:bg-[#050708]/90 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#050708]/50 dark:hover:bg-[#050708]/30 mr-2 mb-2">
-                            <FaPhoneAlt className='mr-2' /> Sign in with Phone
+                        <span className="text-white bg-[#3b5998] hover:bg-[#3b5998]/90 focus:ring-4 focus:outline-none focus:ring-[#3b5998]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#3b5998]/55 mr-2 mb-2" onClick={handleFacebookLogin}>
+                            <FaFacebook className='mr-2' /> Sign in with Facebook
                         </span>
 
+                       
+
                     </div>
-                    <span className='my-2 font-medium text-red-500 underline'>Forgot password?</span>
+                    <span className='my-2 font-medium text-red-500 underline' onClick={resetPasswordEmail}>Forgot password?</span>
                     <p className='font-medium'>Don't have an account? <Link to="/register" className='text-green-400'>Create one</Link>.</p>
                 </div>
             </div>

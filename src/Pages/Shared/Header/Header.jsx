@@ -45,14 +45,16 @@ const Header = () => {
                     <span className="self-center text-2xl font-semibold whitespace-nowrap text-gradient ">Paradise Peaks</span>
                 </Link>
                 <div className="flex items-center md:order-2">
+                    <div>
                     {
                         user ? <button type="button" className="flex mr-3 text-sm rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" onClick={()=>setMenuOpen(!menuOpen)} >
                         <span className="sr-only">Open user menu</span>
                         <span  alt="user photo"><HiUserCircle className="w-14 h-14 rounded-full"/></span>
-                    </button> :  <button className='myBtn mt-5'>
+                    </button> :  <button className='myBtnSecond mt-0'>
                         <Link to="/login">Login</Link>
                     </button>
                     }
+                    </div>
 
                     <div className={`z-50 ${menuOpen ? " absolute top-16 right-7" : "hidden"} my-4  text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600`}>
                         <div className="px-4 py-3">

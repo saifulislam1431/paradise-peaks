@@ -24,3 +24,7 @@
 .myBtn{
     @apply bg-gradient-primary hover:bg-gradient-ternary px-6 py-2 rounded-md font-semibold text-white
 }
+
+.myBtnSecond{
+    @apply bg-gradient-primary hover:bg-gradient-ternary px-4 py-1 rounded-sm font-semibold text-white
+}
