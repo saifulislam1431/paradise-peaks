@@ -16,7 +16,7 @@ const Home = () => {
             <section className='my-10 flex flex-col lg:flex-row justify-center items-center gap-10'>
                 <div>
                     <h1 className='text-2xl font-bold title'>Book an room, suite or apartment for you....! </h1>
-                    <button className='bg-gradient-primary hover:bg-gradient-ternary px-6 py-2 rounded-md font-semibold text-white mt-5'>
+                    <button className='myBtn mt-5'>
                         <Link to="/rooms">Get Started</Link>
                     </button>
                 </div>
