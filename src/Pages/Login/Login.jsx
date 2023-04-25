@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 const Login = () => {
     const [type, setType] = useState('password');
     const [show, setShow] = useState(false);
-    const { signInUser, resetPassword, facebookLogIn } = useContext(UserContext);
+    const { signInUser, resetPassword, facebookLogIn,googleLogIn } = useContext(UserContext);
     const location = useLocation();
     const navigate = useNavigate();
     const emailRef = useRef()
@@ -109,6 +109,36 @@ const Login = () => {
             });
         })
     }
+
+    const handleGoogleLogin =()=>{
+        googleLogIn()
+        .then(res => {
+            const loggedUser = res.user;
+            toast.success('Login Successfully', {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            navigate('/');
+            form.reset();
+        }).catch(error => {
+            toast.error(error.message, {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+        })
+    }
     return (
         <div className='flex items-center justify-center my-16'>
             <div>
@@ -133,12 +163,12 @@ const Login = () => {
                 <div className='flex flex-col'>
                     <p className='text-center font-medium'>Or login with:</p>
                     <div className='my-2'>
-                        <span type="button" className="text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2">
+                        <span type="button" className="text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2 cursor-pointer" onClick={handleGoogleLogin}>
                             <FaGoogle className='mr-2' />
                             Sign in with Google
                         </span>
 
-                        <span className="text-white bg-[#3b5998] hover:bg-[#3b5998]/90 focus:ring-4 focus:outline-none focus:ring-[#3b5998]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#3b5998]/55 mr-2 mb-2" onClick={handleFacebookLogin}>
+                        <span className="text-white bg-[#3b5998] hover:bg-[#3b5998]/90 focus:ring-4 focus:outline-none focus:ring-[#3b5998]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#3b5998]/55 mr-2 mb-2 cursor-pointer" onClick={handleFacebookLogin}>
                             <FaFacebook className='mr-2' /> Sign in with Facebook
                         </span>
 
