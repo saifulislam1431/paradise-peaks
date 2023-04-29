@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigation } from 'react-router-dom';
 import SingleRoom from '../SingleRoom/SingleRoom';
+import Loading from '../Loading/Loading';
 
 const Rooms = () => {
+    const navigation = useNavigation;
+    if(navigation.state === 'loading'){
+        return <Loading></Loading>
+    }
     const allRooms = useLoaderData();
     const [isAllShow , setIsAllShow] = useState(false);
 

@@ -1,8 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigation } from 'react-router-dom';
+import Loading from '../Loading/Loading';
 
 const SingleRoom = ({ singleRoom }) => {
     const {id,category,description,img} = singleRoom;
+    const navigation = useNavigation;
+    if(navigation.state === 'loading'){
+        return <Loading></Loading>
+    }
     return (
         <section>
 

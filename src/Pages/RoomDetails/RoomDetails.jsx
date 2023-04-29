@@ -1,10 +1,15 @@
 import React from 'react';
-import { Link, useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData, useNavigation } from 'react-router-dom';
 
 import { FaBackward, FaBed,FaDollarSign } from 'react-icons/fa';
 import {IoBed} from "react-icons/io5";
+import Loading from '../Loading/Loading';
 
 const RoomDetails = () => {
+    const navigation = useNavigation;
+    if(navigation.state === 'loading'){
+        return <Loading></Loading>
+    }
     const details = useLoaderData();
     // console.log(details);
     const { id, category, description, img, price, occupancy, beds } = details;

@@ -9,18 +9,22 @@ export const UserContext = createContext(null);
 const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
     const [user , setUser] =useState(null);
+    const [loading , setLoading] = useState(true);
     const facebookProvider = new FacebookAuthProvider();
     const googleProvider = new GoogleAuthProvider();
 
     const registerUser =(email,password)=>{
+        setLoading(true);
         return createUserWithEmailAndPassword(auth , email ,password);
     }
 
     const signInUser=(email,password)=>{
+        setLoading(true);
         return signInWithEmailAndPassword(auth , email, password);
     }
 
     const logOut =()=>{
+        setLoading(true);
         return signOut(auth);
     }
     
@@ -38,6 +42,7 @@ const AuthProvider = ({ children }) => {
     useEffect(()=>{
         const unsubscribe = onAuthStateChanged(auth , currentUser=>{
             setUser(currentUser)
+            setLoading(false);
         })
         return ()=>{
             unsubscribe();
@@ -51,7 +56,8 @@ const AuthProvider = ({ children }) => {
         logOut,
         resetPassword,
         facebookLogIn,
-        googleLogIn
+        googleLogIn,
+        loading
     }
     return (
         <UserContext.Provider value={userInfo}>

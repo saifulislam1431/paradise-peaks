@@ -11,7 +11,7 @@ const Login = () => {
     const location = useLocation();
     console.log(location);
     const navigate = useNavigate();
-    const from = location.state.from.pathname || "/";
+    const from = location.state?.from?.pathname || "/";
     // console.log(from);
     const emailRef = useRef()
     const handleShow = () => {
@@ -41,7 +41,7 @@ const Login = () => {
                     progress: undefined,
                     theme: "light",
                 });
-
+                
                 form.reset();
                
             }).catch(error => {
