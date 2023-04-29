@@ -9,7 +9,10 @@ const Login = () => {
     const [show, setShow] = useState(false);
     const { signInUser, resetPassword, facebookLogIn,googleLogIn } = useContext(UserContext);
     const location = useLocation();
+    console.log(location);
     const navigate = useNavigate();
+    const from = location.state.from.pathname || "/";
+    // console.log(from);
     const emailRef = useRef()
     const handleShow = () => {
         setType('text')
@@ -27,6 +30,7 @@ const Login = () => {
         signInUser(email, password)
             .then(res => {
                 const loggedUser = res.user;
+                navigate(from , {replace: true});
                 toast.success('Login Successfully', {
                     position: "top-center",
                     autoClose: 3000,
@@ -37,8 +41,9 @@ const Login = () => {
                     progress: undefined,
                     theme: "light",
                 });
-                navigate('/');
+
                 form.reset();
+               
             }).catch(error => {
                 toast.error(error.message, {
                     position: "top-center",
@@ -51,6 +56,7 @@ const Login = () => {
                     theme: "light",
                 });
             })
+           
     }
     const resetPasswordEmail = () => {
         const email = emailRef.current.value;
@@ -84,6 +90,7 @@ const Login = () => {
         facebookLogIn()
         .then(res => {
             const loggedUser = res.user;
+            navigate(from , {replace: true});
             toast.success('Login Successfully', {
                 position: "top-center",
                 autoClose: 3000,
@@ -94,7 +101,7 @@ const Login = () => {
                 progress: undefined,
                 theme: "light",
             });
-            navigate('/');
+            
             form.reset();
         }).catch(error => {
             toast.error(error.message, {
@@ -114,6 +121,7 @@ const Login = () => {
         googleLogIn()
         .then(res => {
             const loggedUser = res.user;
+            navigate(from , {replace: true});
             toast.success('Login Successfully', {
                 position: "top-center",
                 autoClose: 3000,
@@ -124,7 +132,7 @@ const Login = () => {
                 progress: undefined,
                 theme: "light",
             });
-            navigate('/');
+            
             form.reset();
         }).catch(error => {
             toast.error(error.message, {

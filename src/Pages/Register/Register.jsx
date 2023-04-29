@@ -3,6 +3,7 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../AuthProviders/AuthProvider';
 import { toast } from 'react-toastify';
+import { updateProfile } from 'firebase/auth';
 
 const Register = () => {
     const { registerUser } = useContext(UserContext);
@@ -59,6 +60,9 @@ const Register = () => {
                     progress: undefined,
                     theme: "light",
                 });
+                updateProfile(loggedUser , {
+                    displayName : userName , photoURL : photoUrl
+                }).then(()=>{console.log("Update")}).catch((error)=>{console.log(error);})
                 navigate('/');
                 form.reset();
                 getError('');
